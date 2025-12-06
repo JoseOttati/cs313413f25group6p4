@@ -1,0 +1,15 @@
+Group 6: Eniya Madden, Jose Ottati, Oscar Sanchez Huezca, Emil Shahbazov, Jacob Waag
+Project 4 Report
+COMP 313-001 F25
+December 6, 2025
+Working on the Android stopwatch project offered our team an excellent opportunity to experience collaborative software development while applying formal design principles we’ve learned in practice.
+We organized our workflow by dividing responsibilities across the user interface, model implementation, and state machine logic. The repository was central to our collaboration, allowing for smooth integration of
+contributions. Regular testing ensured the stopwatch remained functional throughout development. A noteworthy aspect of our process was iterative refactoring: as we connected the state machine 
+to the UI, we refined both the adapter and model facade to simplify event handling and enhance responsiveness without disrupting the underlying logic. Each modeled state — running, stopped, lap running, 
+and lap stopped — corresponds directly to a class implementing the StopwatchState interface. Actions and transitions from the model, such as onStartStop and onLapReset, were faithfully translated into methods 
+in the state machine. One difference is that the model diagrams abstracted away implementation details such as threading, tick scheduling, and integration with the Android lifecycle, all of which were necessary 
+in code to ensure smooth UI updates. Additionally, the model did not include the adapter and facade components, which in practice facilitate communication between the user interface and the state machine.
+Reflecting on the process, modeling first proved highly beneficial, providing a clear blueprint for expected behavior and allowing us to anticipate edge cases before coding. However, seeing the system in 
+action highlighted additional considerations, like precise tick timing and lifecycle management, which led to minor adjustments in the implementation. If we were to revise the model now, we would incorporate 
+these practical concerns to make it more aligned with real-world execution. Overall, the alignment between model and code, combined with iterative testing and careful refactoring, enabled us to deliver a reliable,
+maintainable stopwatch while extending our understanding of how design and implementation interact in Android development.
