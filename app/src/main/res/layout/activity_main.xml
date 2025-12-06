@@ -3,8 +3,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp" >
+    android:layout_marginTop="10dp"
+    android:padding="16dp" >
 
+    <!-- State Display (Optional - shows current timer state) -->
     <RelativeLayout
         android:id="@+id/state"
         android:layout_width="wrap_content"
@@ -15,70 +17,105 @@
             android:id="@+id/stateName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp" />
+            android:textSize="24sp"
+            android:textColor="#666666" />
     </RelativeLayout>
 
-    <!--
-         TODO Why can't I define textSize and textStyle
-    	 in the timer container and have it inherited
-    	 by the TextViews?
-    -->
-
+    <!-- Timer Display - Single Two-Digit Display (88 format) -->
     <RelativeLayout
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/state"
-        android:layout_centerHorizontal="true" >
-
-        <TextView
-            android:id="@+id/minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/minutes"
-            android:textSize="80sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/colon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/minutes"
-            android:text="@string/colon"
-            android:textSize="80sp"
-            android:textStyle="bold" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" >
 
         <TextView
             android:id="@+id/seconds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/colon"
             android:text="@string/seconds"
-            android:textSize="80sp"
-            android:textStyle="bold" />
+            android:textSize="120sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:minWidth="200dp"
+            android:gravity="center" />
     </RelativeLayout>
 
+    <!-- Optional: Manual Time Input (Extra Credit) -->
+    <RelativeLayout
+        android:id="@+id/inputContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/inputLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter time (seconds):"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/timeInput"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputLabel"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="00"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:enabled="false" />
+    </RelativeLayout>
+
+    <!-- Two Buttons: Increment and Start/Stop -->
     <RelativeLayout
         android:id="@+id/buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/timer"
-        android:layout_centerHorizontal="true" >
+        android:layout_below="@id/inputContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" >
 
         <Button
-            android:id="@+id/startStop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onStartStop"
-            android:text="@string/startStop" />
+            android:id="@+id/incrementButton"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:onClick="onIncrementButton"
+            android:text="@string/increment"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
 
         <Button
-            android:id="@+id/resetLap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/startStop"
-            android:onClick="onLapReset"
-            android:text="@string/resetLap" />
+            android:id="@+id/startStopButton"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_toEndOf="@id/incrementButton"
+            android:onClick="onStartCancelButton"
+            android:text="@string/start"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp" />
     </RelativeLayout>
+
+    <!-- Instructions Text (Optional) -->
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttons"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Press button to set time"
+        android:textSize="14sp"
+        android:textColor="#999999"
+        android:gravity="center" />
 
 </RelativeLayout>

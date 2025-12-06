@@ -4,13 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import android.widget.Button;
 import android.widget.TextView;
 import edu.luc.etl.cs313.android.simplestopwatch.R;
-import edu.luc.etl.cs313.android.simplestopwatch.android.StopwatchAdapter;
+import edu.luc.etl.cs313.android.simplestopwatch.android.TimerAdapter;
 
 import static edu.luc.etl.cs313.android.simplestopwatch.common.Constants.SEC_PER_MIN;
 
@@ -102,7 +101,7 @@ public abstract class AbstractStopwatchActivityTest {
 
     // auxiliary methods for easy access to UI widgets
 
-    protected abstract StopwatchAdapter getActivity();
+    protected abstract TimerAdapter getActivity();
 
     protected int tvToInt(final TextView t) {
         return Integer.parseInt(t.getText().toString().trim());

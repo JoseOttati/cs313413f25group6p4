@@ -1,11 +1,9 @@
 package edu.luc.etl.cs313.android.simplestopwatch.common;
 
 /**
- * A listener for stopwatch events coming from the UI.
- *
- * @author laufer
+ * A listener for UI input events for the timer.
+ * This interface follows the Dependency Inversion Principle (DIP).
  */
 public interface StopwatchUIListener {
-    void onStartStop();
-    void onLapReset();
+    void onButtonPress();
 }

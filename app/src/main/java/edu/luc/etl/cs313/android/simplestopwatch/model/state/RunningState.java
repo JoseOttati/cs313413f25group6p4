@@ -2,30 +2,44 @@ package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
 import edu.luc.etl.cs313.android.simplestopwatch.R;
 
-class RunningState implements StopwatchState {
+/**
+ * The running state of the timer.
+ * Timer is actively counting down.
+ *
+ * Behavior:
+ * - Decrements time by 1 second on each tick
+ * - Transitions to ALARM state when reaching zero
+ * - Cancel button stops countdown and returns to STOPPED state
+ *
+ * Design Changes from Stopwatch to Timer:
+ * - Stopwatch: incremented time (counted UP)
+ * - Timer: decrements time (counts DOWN)
+ * - Stopwatch: ran indefinitely
+ * - Timer: stops at zero and triggers alarm
+ */
+class RunningState implements TimerState {
 
-    public RunningState(final StopwatchSMStateView sm) {
+    public RunningState(final DefaultTimerStateMachine sm) {
         this.sm = sm;
     }
 
-    private final StopwatchSMStateView sm;
+    private final DefaultTimerStateMachine sm;
 
     @Override
-    public void onStartStop() {
+    public void onButtonPress() {
         sm.actionStop();
+        sm.actionReset();
         sm.toStoppedState();
     }
 
     @Override
-    public void onLapReset() {
-        sm.actionLap();
-        sm.toLapRunningState();
-    }
-
-    @Override
     public void onTick() {
-        sm.actionInc();
-        sm.toRunningState();
+        if (!sm.isAtZero()) {
+            sm.actionDec();
+        } else {
+            sm.actionStop();
+            sm.toAlarmState();
+        }
     }
 
     @Override
@@ -36,5 +50,16 @@ class RunningState implements StopwatchState {
     @Override
     public int getId() {
         return R.string.RUNNING;
+    }
+    @Override
+    public void onIncrementButton() {
+        // Do nothing while running
+    }
+
+    @Override
+    public void onStartCancelButton() {
+        sm.actionStop();
+        sm.actionReset();
+        sm.toStoppedState();
     }
 }

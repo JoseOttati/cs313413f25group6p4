@@ -23,11 +23,11 @@ import edu.luc.etl.cs313.android.simplestopwatch.test.android.AbstractStopwatchA
 public class StopwatchActivityTest extends AbstractStopwatchActivityTest {
 
     @Rule
-    public final ActivityTestRule<StopwatchAdapter> activityRule =
-            new ActivityTestRule<>(StopwatchAdapter.class);
+    public final ActivityTestRule<TimerAdapter> activityRule =
+            new ActivityTestRule<>(TimerAdapter.class);
 
     @Override
-    protected StopwatchAdapter getActivity() {
+    protected TimerAdapter getActivity() {
         return activityRule.getActivity();
     }
 }
