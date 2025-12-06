@@ -4,7 +4,7 @@ COMP 313-001 F25
 December 6, 2025
 Working on the Android stopwatch project offered our team an excellent opportunity to experience collaborative software development while applying formal design principles we’ve learned in practice.
 We organized our workflow by dividing responsibilities across the user interface, model implementation, and state machine logic. The repository was central to our collaboration, allowing for smooth integration of
-contributions from each team member. Regular testing ensured the stopwatch remained functional throughout development. A noteworthy aspect of our process was iterative refactoring: as we connected the state machine 
+contributions. Regular testing ensured the stopwatch remained functional throughout development. A noteworthy aspect of our process was iterative refactoring: as we connected the state machine 
 to the UI, we refined both the adapter and model facade to simplify event handling and enhance responsiveness without disrupting the underlying logic. Each modeled state — running, stopped, lap running, 
 and lap stopped — corresponds directly to a class implementing the StopwatchState interface. Actions and transitions from the model, such as onStartStop and onLapReset, were faithfully translated into methods 
 in the state machine. One difference is that the model diagrams abstracted away implementation details such as threading, tick scheduling, and integration with the Android lifecycle, all of which were necessary 
